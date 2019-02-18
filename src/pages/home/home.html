@@ -1,28 +1,31 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Poeple with Pets
+      Poeple with Cats
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div *ngFor="let i of people">
-    <ion-card>      
-        <ion-card-header color="primary">
-            <ion-card-title >{{i.name}}</ion-card-title>
-        </ion-card-header>  
-        <ion-item>          
-          <div><strong>Gender: </strong>{{i.gender}}</div>
-          <div><strong>Age: </strong>{{i.age}}</div>          
-          <div *ngIf="i.pets?.length > 0">
-              <hr />
-              <h2>Pets</h2>
+
+  <ion-card>
+    <div *ngFor="let item of people | groupBygender">
+      <ion-card-header color="primary">
+        <ion-card-title> {{ item.gender }} Cat Owners</ion-card-title>
+      </ion-card-header>
+      <ion-item>
+        <div *ngFor="let ppl of item.people">
+          <strong> {{ppl.name}} - {{ppl.age}} </strong>
+          <div *ngFor="let pet of ppl.pets">
+            <div *ngIf="pet.type ==='Cat'">
+
+              <div>{{pet.name}}</div>
             </div>
-          <div *ngFor="let p of i.pets">
-            <div><strong>{{p.name}} </strong>- {{p.type}}</div>
-          </div>       
-        </ion-item>
-    </ion-card>
-</div>
+
+          </div>
+        </div>
+      </ion-item>
+    </div>
+  </ion-card>
+
 </ion-content>
