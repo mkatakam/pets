@@ -1,14 +1,28 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Poeple with Pets
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div *ngFor="let i of people">
+    <ion-card>      
+        <ion-card-header color="primary">
+            <ion-card-title >{{i.name}}</ion-card-title>
+        </ion-card-header>  
+        <ion-item>          
+          <div><strong>Gender: </strong>{{i.gender}}</div>
+          <div><strong>Age: </strong>{{i.age}}</div>          
+          <div *ngIf="i.pets?.length > 0">
+              <hr />
+              <h2>Pets</h2>
+            </div>
+          <div *ngFor="let p of i.pets">
+            <div><strong>{{p.name}} </strong>- {{p.type}}</div>
+          </div>       
+        </ion-item>
+    </ion-card>
+</div>
 </ion-content>
